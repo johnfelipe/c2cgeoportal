@@ -70,7 +70,12 @@ span.prompt1:before {
 <span class="prompt1">git add docker-run project.yaml.mako</span>
 <span class="prompt1">git commit --quiet --message<span class="o">=</span><span class="s2">&quot;Start upgrade&quot;</span></span>
 <span class="prompt1">make --makefile<span class="o">=</span>&lt;user&gt;.mk project.yaml</span>
-</pre><p>For Docker (recommended):</p>
+</pre><div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If the last command failed you should create the <code class="docutils literal notranslate"><span class="pre">project.yaml</span></code> file
+from the <code class="docutils literal notranslate"><span class="pre">project.yaml.mako</span></code> file.</p>
+</div>
+<p>For Docker (recommended):</p>
 <pre class="highlight"><span class="prompt1">./docker-run --version<span class="o">=</span>&lt;version&gt; --home --image<span class="o">=</span>camptocamp/geomapfish-build <span class="se">\</span>
     c2cupgrade --force-docker --new-makefile<span class="o">=</span>Makefile --makefile<span class="o">=</span>&lt;package&gt;.mk</span>
 </pre><p>For non-Docker:</p>
@@ -84,7 +89,7 @@ For example, <code class="docutils literal notranslate"><span class="pre">2.3.0<
 <p class="first admonition-title">Note</p>
 <p>Known issue</p>
 <p>If you have the following message:</p>
-<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">key</span> <span class="n">verification</span> <span class="n">failed</span><span class="o">.</span>
+<div class="code text highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">key</span> <span class="n">verification</span> <span class="n">failed</span><span class="o">.</span>
 <span class="n">fatal</span><span class="p">:</span> <span class="n">Could</span> <span class="ow">not</span> <span class="n">read</span> <span class="kn">from</span> <span class="nn">remote</span> <span class="n">repository</span><span class="o">.</span>
 
 <span class="n">Please</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">you</span> <span class="n">have</span> <span class="n">the</span> <span class="n">correct</span> <span class="n">access</span> <span class="n">rights</span>
