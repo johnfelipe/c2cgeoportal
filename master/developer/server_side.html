@@ -92,7 +92,11 @@ tests require to run with <code class="docutils literal notranslate"><span class
 <pre class="highlight"><span class="prompt1">./docker-compose-run make tests</span>
 </pre><p>To run a specific test use the <code class="docutils literal notranslate"><span class="pre">-k</span></code> switch. For example:</p>
 <pre class="highlight"><span class="prompt1">./docker-compose-run py.tests -k test_catalogue geoportal/tests</span>
-</pre></div>
+</pre><p>To run the tests for the <code class="docutils literal notranslate"><span class="pre">geomapfish_qgisserver</span></code> plugin using dedicated
+docker image and composition:</p>
+<pre class="highlight"><span class="prompt1">make -C docker/qgisserver tests</span>
+</pre><p>See <code class="docutils literal notranslate"><span class="pre">docker/qgisserver/README.md</span></code> for more information.</p>
+</div>
 </div>
 </div>
 <div class="section" id="database">
