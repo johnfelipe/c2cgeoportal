@@ -155,7 +155,7 @@ structure, you can use the script themev1tov2.</p>
 <pre class="highlight"><span class="prompt1">.build/venv/bin/themev1tov2 -i geoportal/production.ini</span>
 </pre><p>In docker context, run the script from geoportal service:</p>
 <pre class="highlight"><span class="prompt1">docker-compose up -d</span>
-<span class="prompt1">docker-compose run --rm geoportal themev1tov2 -i production.ini</span>
+<span class="prompt1">docker-compose <span class="nb">exec</span> geoportal themev1tov2</span>
 </pre><p>Text translations for ngeo clients are separate and different from text
 translations for CGXP clients.
 To migrate the text translations from CGXP to ngeo, you can use the script</p>
