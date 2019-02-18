@@ -121,7 +121,7 @@ others on <cite>/&lt;project_name&gt;/</cite>.</p>
 <div class="section" id="run-gunicorn-to-reload-on-modifications-of-python-files">
 <h3>Run gunicorn to reload on modifications of Python files<a class="headerlink" href="#run-gunicorn-to-reload-on-modifications-of-python-files" title="Permalink to this headline">¶</a></h3>
 <p>Add the following environment variable to the geoportal container:</p>
-<p><code class="docutils literal notranslate"><span class="pre">GUNICORN_PARAMS=&quot;-b</span> <span class="pre">:80</span> <span class="pre">--worker-class</span> <span class="pre">gthread</span> <span class="pre">--threads</span> <span class="pre">1</span> <span class="pre">--workers</span> <span class="pre">1</span> <span class="pre">--reload&quot;</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">GUNICORN_PARAMS=&quot;-b</span> <span class="pre">:8080</span> <span class="pre">--worker-class</span> <span class="pre">gthread</span> <span class="pre">--threads</span> <span class="pre">2</span> <span class="pre">--workers</span> <span class="pre">2</span> <span class="pre">--reload&quot;</span></code></p>
 </div>
 <div class="section" id="do-a-graceful-restart-of-the-running-geoportal-container">
 <h3>Do a graceful restart of the running geoportal container<a class="headerlink" href="#do-a-graceful-restart-of-the-running-geoportal-container" title="Permalink to this headline">¶</a></h3>
@@ -131,7 +131,7 @@ others on <cite>/&lt;project_name&gt;/</cite>.</p>
 <div class="section" id="mount-c2cgeoportal-in-the-container">
 <h3>Mount c2cgeoportal in the container<a class="headerlink" href="#mount-c2cgeoportal-in-the-container" title="Permalink to this headline">¶</a></h3>
 <p>Clone and build c2cgeoportal, see: developer_server_side.</p>
-<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
+<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
 <div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">version</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span>
 
 <span class="n">services</span><span class="p">:</span>
@@ -162,8 +162,8 @@ This way, you do not need to publish this port on the main host.</p>
 <h3>Use Webpack dev server<a class="headerlink" href="#use-webpack-dev-server" title="Permalink to this headline">¶</a></h3>
 <p>In the file <code class="docutils literal notranslate"><span class="pre">docker-compose-dev.yaml</span></code> set the <code class="docutils literal notranslate"><span class="pre">INTERFACE</span></code> to the wanted value.</p>
 <p>Run:</p>
-<pre class="highlight"><span class="prompt1">docker-compose --file<span class="o">=</span>docker-compose.yaml --file<span class="o">=</span>docker-compose-dev.yaml up</span>
-</pre><p>Open the application with on the following path: <code class="docutils literal notranslate"><span class="pre">https://&lt;host&gt;/&lt;entry_point&gt;/dev/&lt;interface&gt;.html</span></code>.</p>
+<pre class="highlight"><span class="prompt1">docker-compose --file<span class="o">=</span>docker-compose.yaml --file<span class="o">=</span>docker-compose-dev.yaml up -b</span>
+</pre><p>Open the application at the following path: <code class="docutils literal notranslate"><span class="pre">https://&lt;host&gt;/&lt;entry_point&gt;/dev/&lt;interface&gt;.html</span></code>.</p>
 </div>
 </div>
 <div class="section" id="use-a-specific-version-of-ngeo">
