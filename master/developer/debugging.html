@@ -142,22 +142,34 @@ others on <cite>/&lt;project_name&gt;/</cite>.</p>
 </div>
 <div class="section" id="developing-in-python">
 <h2>Developing in Python<a class="headerlink" href="#developing-in-python" title="Permalink to this headline">¶</a></h2>
-<p>Add the following environment variable to the geoportal container:</p>
-<p><code class="docutils literal notranslate"><span class="pre">GUNICORN_PARAMS=&quot;-b</span> <span class="pre">:80</span> <span class="pre">--worker-class</span> <span class="pre">gthread</span> <span class="pre">--threads</span> <span class="pre">1</span> <span class="pre">--workers</span> <span class="pre">1</span> <span class="pre">--reload&quot;</span></code></p>
-<p>TODO</p>
+<div class="section" id="create-a-development-docker-compose-override-yml">
+<h3>Create a development docker-compose.override.yml<a class="headerlink" href="#create-a-development-docker-compose-override-yml" title="Permalink to this headline">¶</a></h3>
+<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>---
+
+version: &#39;2&#39;
+
+services:
+  geoportal:
+    volumes:
+      - ${PWD}/geoportal/&lt;project&gt;_geoportal:/app/&lt;project&gt;_geoportal
+    environment:
+      - GUNICORN_CMD_ARGS=--reload
+    # entrypoint: []  # do not eval templates when using webpack-dev-server
+</pre></div>
+</div>
 <p>You can also do a graceful restart of the running gunicorn:</p>
 <pre class="highlight"><span class="prompt1">docker-compose <span class="nb">exec</span> geoportal bash</span>
 <span class="prompt1"><span class="nb">kill</span> -s HUP <span class="sb">`</span>ps aux<span class="p">|</span>grep gunicorn<span class="p">|</span>head --lines<span class="o">=</span><span class="m">1</span><span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>  <span class="c1"># graceful</span></span>
 </pre><p>And finally if you stop and start the container you will see your modifications:</p>
 <pre class="highlight"><span class="prompt1">docker-compose stop geoportal</span>
 <span class="prompt1">docker-compose start geoportal</span>
-</pre><div class="section" id="mount-c2cgeoportal-in-the-container">
-<h3>Mount c2cgeoportal in the container<a class="headerlink" href="#mount-c2cgeoportal-in-the-container" title="Permalink to this headline">¶</a></h3>
+</pre></div>
+<div class="section" id="working-on-c2cgeoportal-itself">
+<h3>Working on c2cgeoportal itself<a class="headerlink" href="#working-on-c2cgeoportal-itself" title="Permalink to this headline">¶</a></h3>
 <p>Clone and build c2cgeoportal, see: developer_server_side.</p>
-<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
-<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">version</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span>
-
-<span class="n">services</span><span class="p">:</span>
+<p>Add these volumes to your <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code>:</p>
+<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">services</span><span class="p">:</span>
   <span class="n">geoportal</span><span class="p">:</span>
     <span class="n">volumes</span><span class="p">:</span>
       <span class="o">-</span> <span class="o">&lt;</span><span class="n">c2cgeoportal_git_root</span><span class="o">&gt;/</span><span class="n">commons</span><span class="o">/</span><span class="n">c2cgeoportal_commons</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">c2cgeoportal_commons</span><span class="o">/</span><span class="n">c2cgeoportal_commons</span>
