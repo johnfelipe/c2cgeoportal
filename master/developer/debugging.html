@@ -60,7 +60,7 @@ remove the <code class="docutils literal notranslate"><span class="pre">ng-stric
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">docker-compose --file<span class="o">=</span>docker-compose.yaml --file<span class="o">=</span>docker-compose-dev.yaml up</span>
+</style><span class="prompt1">docker-compose --file<span class="o">=</span>docker-compose.yaml --file<span class="o">=</span>docker-compose-dev.yaml up -b</span>
 </pre><p>Open the application at the following URL: <code class="docutils literal notranslate"><span class="pre">https://&lt;host&gt;/&lt;entry_point&gt;/dev/&lt;interface&gt;.html</span></code>.</p>
 </div>
 <div class="section" id="pyramid">
@@ -142,9 +142,9 @@ others on <cite>/&lt;project_name&gt;/</cite>.</p>
 </div>
 <div class="section" id="developing-in-python">
 <h2>Developing in Python<a class="headerlink" href="#developing-in-python" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="create-a-development-docker-compose-override-yml">
-<h3>Create a development docker-compose.override.yml<a class="headerlink" href="#create-a-development-docker-compose-override-yml" title="Permalink to this headline">¶</a></h3>
-<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
+<div class="section" id="create-a-development-docker-compose-override-yaml">
+<h3>Create a development docker-compose.override.yaml<a class="headerlink" href="#create-a-development-docker-compose-override-yaml" title="Permalink to this headline">¶</a></h3>
+<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
 <div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>---
 
 version: &#39;2&#39;
@@ -168,7 +168,7 @@ services:
 <div class="section" id="working-on-c2cgeoportal-itself">
 <h3>Working on c2cgeoportal itself<a class="headerlink" href="#working-on-c2cgeoportal-itself" title="Permalink to this headline">¶</a></h3>
 <p>Clone and build c2cgeoportal, see: developer_server_side.</p>
-<p>Add these volumes to your <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yml</span></code>:</p>
+<p>Add these volumes to your <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code>:</p>
 <div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">services</span><span class="p">:</span>
   <span class="n">geoportal</span><span class="p">:</span>
     <span class="n">volumes</span><span class="p">:</span>

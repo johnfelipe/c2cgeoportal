@@ -69,6 +69,21 @@ span.prompt1:before {
 </style><span class="prompt1">docker-compose up -d</span>
 </pre><p>You can then access your application with <a class="reference external" href="http://localhost:8480/">http://localhost:8480/</a></p>
 </div>
+<div class="section" id="clean">
+<h2>Clean<a class="headerlink" href="#clean" title="Permalink to this headline">¶</a></h2>
+<p>Docker does not clean anything automatically, in particular it does not clean any images,
+therefore disk space may become problematic after a certain number of builds.
+You can use the following commands to manually remove Docker files.</p>
+<pre class="highlight"><span class="prompt1">docker ps --all --quiet --filter <span class="nv">status</span><span class="o">=</span>exited <span class="p">|</span> xargs --no-run-if-empty docker rm</span>
+<span class="prompt1">docker images <span class="p">|</span> grep <span class="s2">&quot;&lt;none&gt;&quot;</span> <span class="p">|</span> awk <span class="s1">&#39;{print $3}&#39;</span> <span class="p">|</span> xargs --no-run-if-empty docker rmi <span class="o">||</span> <span class="nb">true</span></span>
+<span class="prompt1">docker volume ls --quiet --filter <span class="nv">dangling</span><span class="o">=</span><span class="nb">true</span> <span class="p">|</span> grep <span class="s1">&#39;[0-9a-f]\{64\}&#39;</span> <span class="p">|</span> xargs --no-run-if-empty docker volume rm</span>
+</pre><p>This will remove:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* Container with exit status
+* Images with version on name as `&lt;none&gt;`
+* Unnamed dangling volumes
+</pre></div>
+</div>
+</div>
 </div>
 
 
