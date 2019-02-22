@@ -173,11 +173,7 @@ c2cgeoportal_admin: .config
 	$(PRERULE_CMD)
 	mkdir --parent .build
 	rm -rf .build/venv
-ifdef CI
-	virtualenv --python=python3 --system-site-packages .build/venv
-else
 	$(PYTHON) -m venv --system-site-packages .build/venv
-endif
 ifeq ($(OPERATING_SYSTEM), WINDOWS)
 	$(PYTHON_BIN)/python -m pip install --upgrade pip
 	$(PYTHON_BIN)/python -m pip install -r requirements.txt
