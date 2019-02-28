@@ -60,6 +60,7 @@ separate schemas. This is required for layer access control (<em>restricted
 layers</em>), where joining user/role tables to PostGIS layer tables is necessary.</p>
 <p>You need a Postgres database &gt;= 9.1 in UTF-8 with the PostGIS &gt;= 2.1 extension.</p>
 <p>Create the “pg_trgm” extension to use the “similarity” function within the full-text search.</p>
+<p>Create the “unaccent” extension to have accent-insensitive search within the full-text search.</p>
 <p>And by default we assume that the <code class="docutils literal notranslate"><span class="pre">www-data</span></code> user exists with all rights on the application schema.</p>
 <div class="section" id="create-the-schemas">
 <span id="integrator-install-application-create-schema"></span><h3>Create the schemas<a class="headerlink" href="#create-the-schemas" title="Permalink to this headline">¶</a></h3>
