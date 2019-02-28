@@ -66,6 +66,27 @@ We recommand to use a <a class="reference external" href="https://www.gdal.org/g
 <a class="reference external" href="https://www.gdal.org/gdalbuildvrt.html">gdalbuildvrt</a>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">round</span></code> specifigdalbuildvrtes how the result values should be rounded.
 For instance ‘1’: round to the unit, ‘0.01’: round to the hundredth, etc.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>gdalbuildvrt usage example:</p>
+<p>Set the variable environnents (Example for Exoscale):</p>
+<pre class="highlight"><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1"><span class="nb">export</span> <span class="nv">AWS_DEFAULT_REGION</span><span class="o">=</span>ch-dk-2</span>
+<span class="prompt1"><span class="nb">export</span> <span class="nv">AWS_S3_ENDPOINT</span><span class="o">=</span>sos-ch-dk-2.exo.io</span>
+<span class="prompt1"><span class="nb">export</span> <span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>&lt;key&gt;</span>
+<span class="prompt1"><span class="nb">export</span> <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>&lt;secret&gt;</span>
+</pre><p>Get the list of uploaded files:</p>
+<pre class="highlight"><span class="prompt1">aws --endpoint-url https://sos-ch-dk-2.exo.io/ --region ch-dk-2 s3 ls s3://&lt;bucket&gt;/&lt;folder&gt;</span>
+</pre><p>Create a file named e.g.: <code class="docutils literal notranslate"><span class="pre">list.txt</span></code> with the files we want to generate.</p>
+<div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">vsis3</span><span class="o">/&lt;</span><span class="n">bucket</span><span class="o">&gt;/&lt;</span><span class="n">folder</span><span class="o">&gt;/&lt;</span><span class="n">file</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>And finally generate the VRT file with:</p>
+<pre class="highlight"><span class="prompt1">gdalbuildvrt -input_file_list list.txt /vsis3/&lt;bucket&gt;/&lt;folder&gt;/&lt;file&gt;.vrt</span>
+</pre></div>
 </div>
 
 
