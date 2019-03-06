@@ -113,27 +113,10 @@ account:</p>
 <h3>Multiple dev on one server<a class="headerlink" href="#multiple-dev-on-one-server" title="Permalink to this headline">¶</a></h3>
 <p>When you want to run multiple instances on the same server you should:</p>
 <ul class="simple">
-<li>Use the global front</li>
 <li>Use a different docker tag for each instance</li>
 <li>Use a different project name for each instance</li>
 </ul>
 </div>
-<div class="section" id="global-front">
-<h3>Global front<a class="headerlink" href="#global-front" title="Permalink to this headline">¶</a></h3>
-<p>The global front will offer a unique entry point on port 80 that provide the ‘main’ project on <cite>/</cite> and the
-others on <cite>/&lt;project_name&gt;/</cite>.</p>
-<p>Activate it in the vars:</p>
-<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">vars</span><span class="p">:</span>
-  <span class="n">docker_global_front</span><span class="p">:</span> <span class="n">true</span>
-</pre></div>
-</div>
-<p>Build the project:</p>
-<pre class="highlight"><span class="prompt1">./docker-run make build</span>
-</pre><p>Run the global front:</p>
-<pre class="highlight"><span class="prompt1"><span class="o">(</span><span class="nb">cd</span> global-front<span class="p">;</span> docker-compose --project-name<span class="o">=</span>global up --build<span class="o">)</span></span>
-</pre><p>And we should defined different instance name for the build:</p>
-<pre class="highlight"><span class="prompt1"><span class="nv">INSTANCE</span><span class="o">=</span>&lt;name&gt; ./docker-run make build</span>
-</pre></div>
 <div class="section" id="use-a-different-docker-tag">
 <h3>Use a different docker tag<a class="headerlink" href="#use-a-different-docker-tag" title="Permalink to this headline">¶</a></h3>
 <p>Just define an environment variable in the build:</p>
