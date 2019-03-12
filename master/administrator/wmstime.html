@@ -84,8 +84,8 @@ ISO 8601 and its duration/time intervals definition (see
 </ul>
 <p>For more information please refer to the <a class="reference external" href="http://mapserver.org/ogc/wms_time.html">MapServer documentation</a>.</p>
 </div>
-<div class="section" id="admin-interface">
-<h3>Admin interface<a class="headerlink" href="#admin-interface" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="admin-interface-widget">
+<h3>Admin interface - widget<a class="headerlink" href="#admin-interface-widget" title="Permalink to this headline">¶</a></h3>
 <p>Most of the configuration is done in the mapfile as described in the above
 section. However the time widget must be configured via the admin interface.
 Two different widget types are available: A time slider and a datepicker
@@ -106,6 +106,12 @@ fields are displayed to select the start and end date.
 In mode <code class="docutils literal notranslate"><span class="pre">range</span></code> the layer will display data that is relative to the defined range.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">disabled</span></code> mode hides the time widget. No time parameter will be sent
 to the GetMap request in this case.</p>
+</div>
+<div class="section" id="admin-interface-query">
+<h3>Admin interface - query<a class="headerlink" href="#admin-interface-query" title="Permalink to this headline">¶</a></h3>
+<p>By setting a <code class="docutils literal notranslate"><span class="pre">timeAttribute</span></code> metadata having as value the attribute used in the OGS server as time item,
+you ensure that the WMS/WFS queries take into account the time filtering values and that no result is returned if an object
+is hidden by the time filter.</p>
 </div>
 </div>
 <div class="section" id="merging-configurations">
