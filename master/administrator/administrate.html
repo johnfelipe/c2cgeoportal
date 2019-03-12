@@ -97,8 +97,7 @@ for information on migrating layers, see <a class="reference internal" href="../
 It is used through the i18n tools to display the name on the layers tree.</li>
 <li><code class="docutils literal notranslate"><span class="pre">Metadata</span> <span class="pre">URL</span></code>: (deprecated)</li>
 <li><code class="docutils literal notranslate"><span class="pre">Description</span></code>: a description.</li>
-<li><code class="docutils literal notranslate"><span class="pre">Public</span></code>: makes the layer public. You must use the <code class="docutils literal notranslate"><span class="pre">Restriction</span> <span class="pre">areas</span></code> to make
-private layer accessible.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Public</span></code>: makes the layer public. also it is accessible through the <code class="docutils literal notranslate"><span class="pre">Restriction</span> <span class="pre">areas</span></code>.</li>
 <li><code class="docutils literal notranslate"><span class="pre">Geo</span> <span class="pre">table</span></code>: the related database table,
 used by the <a class="reference internal" href="editing.html#administrator-editing"><span class="std std-ref">Editing</span></a>.</li>
 <li><code class="docutils literal notranslate"><span class="pre">Exclude</span> <span class="pre">properties</span></code>: the list of attributes (database columns) that should not appear in
@@ -116,11 +115,11 @@ For enumerable attributes (foreign key), the column name should end with â€˜_idâ
 <ul class="simple">
 <li><code class="docutils literal notranslate"><span class="pre">OGC</span> <span class="pre">Server</span></code>: the used server.</li>
 <li><code class="docutils literal notranslate"><span class="pre">WMS</span> <span class="pre">layer</span> <span class="pre">name</span></code>: the WMS layers. Can be one layer, one group, a comma separated list of layers.
-In the case of a coma separated list of layers, we will get the legend rule for the
+In the case of a comma separated list of layers, we will get the legend rule for the
 layer icon on the first layer, and the legend will not be supported we should define a legend metadata.</li>
-<li><code class="docutils literal notranslate"><span class="pre">Style</span></code>: the used style, can be empty.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Style</span></code>: the style used, can be empty.</li>
 <li><code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">mode</span></code>: used for the WMS time component.</li>
-<li><code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">widget</span></code>: the used component type for the WMS time.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Time</span> <span class="pre">widget</span></code>: the component type used for the WMS time.</li>
 </ul>
 </div>
 <div class="section" id="wmts-layer">
@@ -130,8 +129,7 @@ layer icon on the first layer, and the legend will not be supported we should de
 <li><code class="docutils literal notranslate"><span class="pre">GetCapabilities</span> <span class="pre">URL</span></code>: the URL to the WMTS capabilities.</li>
 <li><code class="docutils literal notranslate"><span class="pre">WMTS</span> <span class="pre">layer</span> <span class="pre">name</span></code>: the WMTS layer.</li>
 <li><code class="docutils literal notranslate"><span class="pre">Style</span></code>: the used style, if not present we use the default style.</li>
-<li><code class="docutils literal notranslate"><span class="pre">Matrix</span> <span class="pre">set</span></code>: the used matrix set, if there is only one matrix set
-in the capabilities it can be empty.</li>
+<li><code class="docutils literal notranslate"><span class="pre">Matrix</span> <span class="pre">set</span></code>: the used matrix set, if there is only one matrix set in the capabilities it can be empty.</li>
 <li><code class="docutils literal notranslate"><span class="pre">Image</span> <span class="pre">type</span></code>: the MIME type of the images (e.g.: <code class="docutils literal notranslate"><span class="pre">image/png</span></code>).</li>
 </ul>
 </div>

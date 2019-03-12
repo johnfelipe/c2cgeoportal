@@ -38,7 +38,7 @@
             
   <div class="section" id="install-an-existing-application">
 <span id="integrator-install-application"></span><h1>Install an existing application<a class="headerlink" href="#install-an-existing-application" title="Permalink to this headline">¶</a></h1>
-<p>On this page we explain the procedure to build an application from only the code.</p>
+<p>On this page we explain the procedure to build an application from only the current application code.</p>
 <p>If you want to use an existing database, you should ignore all the commands concerning the database.</p>
 <dl class="docutils">
 <dt>This guide assumes that:</dt>
@@ -59,8 +59,8 @@ and the application-specific tables must be in the same database, preferably in
 separate schemas. This is required for layer access control (<em>restricted
 layers</em>), where joining user/role tables to PostGIS layer tables is necessary.</p>
 <p>You need a Postgres database &gt;= 9.1 in UTF-8 with the PostGIS &gt;= 2.1 extension.</p>
-<p>Create the “pg_trgm” extension to use the “similarity” function within the full-text search.</p>
-<p>Create the “unaccent” extension to have accent-insensitive search within the full-text search.</p>
+<p>If you wish to use the <code class="docutils literal notranslate"><span class="pre">similarity</span></code> function within the full-text search, create the <code class="docutils literal notranslate"><span class="pre">pg_trgm</span></code> extension:</p>
+<p>Create the <code class="docutils literal notranslate"><span class="pre">unaccent</span></code> extension to have accent-insensitive search within the full-text search.</p>
 <p>And by default we assume that the <code class="docutils literal notranslate"><span class="pre">www-data</span></code> user exists with all rights on the application schema.</p>
 <div class="section" id="create-the-schemas">
 <span id="integrator-install-application-create-schema"></span><h3>Create the schemas<a class="headerlink" href="#create-the-schemas" title="Permalink to this headline">¶</a></h3>
@@ -121,9 +121,10 @@ environment variable, for cygwin, git and node binaries.</p>
 <p>Then create the application tables:</p>
 <pre class="highlight"><span class="prompt1">./docker-compose-run make --makefile<span class="o">=</span>&lt;user&gt;.mk upgrade-db</span>
 </pre><p>Your application should now be available at:
-<code class="docutils literal notranslate"><span class="pre">https://&lt;hostname&gt;/</span></code>.</p>
-<p>Where the <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;</span></code> is directly linked to the virtual host.</p>
-<p>Add in the <code class="docutils literal notranslate"><span class="pre">/var/www/vhosts/&lt;vhost_name&gt;/conf/proxies.conf</span></code> file (create it if not exist):</p>
+<code class="docutils literal notranslate"><span class="pre">https://&lt;hostname&gt;/</span></code>,
+where the <code class="docutils literal notranslate"><span class="pre">&lt;hostname&gt;</span></code> is directly linked to the virtual host.</p>
+<p>Add in the <code class="docutils literal notranslate"><span class="pre">/var/www/vhosts/&lt;vhost_name&gt;/conf/proxies.conf</span></code> file
+(create it if it does not exist):</p>
 <div class="code highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ProxyPass</span> <span class="s2">&quot;/&lt;instance&gt;&quot;</span>  <span class="s2">&quot;http://localhost:8080/&lt;instance&gt;&quot;</span>
 <span class="n">ProxyPassReverse</span> <span class="s2">&quot;/&lt;instance&gt;&quot;</span>  <span class="s2">&quot;http://localhost:8080/&lt;instance&gt;&quot;</span>
 <span class="n">ProxyPreserveHost</span> <span class="n">On</span>
