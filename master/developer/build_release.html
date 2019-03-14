@@ -61,17 +61,10 @@ to the upper branches i.e.: <code class="docutils literal notranslate"><span cla
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">./docker-run alembic <span class="se">\</span>
-    --config<span class="o">=</span>geoportal/tests/functional/alembic.ini <span class="se">\</span>
-    --name<span class="o">=</span>main heads</span>
-<span class="prompt1">./docker-run alembic <span class="se">\</span>
-    --config<span class="o">=</span>geoportal/tests/functional/alembic.ini <span class="se">\</span>
-    --name<span class="o">=</span>static heads</span>
+</style><span class="prompt1">./docker-run alembic             --config<span class="o">=</span>geoportal/tests/functional/alembic.ini             --name<span class="o">=</span>main heads</span>
+<span class="prompt1">./docker-run alembic             --config<span class="o">=</span>geoportal/tests/functional/alembic.ini             --name<span class="o">=</span>static heads</span>
 </pre><p>If yes create the merge with:</p>
-<pre class="highlight"><span class="prompt1">./docker-run alembic <span class="se">\</span>
-    --config<span class="o">=</span>geoportal/tests/functional/alembic.ini --name<span class="o">=[</span>main<span class="p">|</span>static<span class="o">]</span> <span class="se">\</span>
-    merge --message<span class="o">=</span><span class="s2">&quot;Merge &lt;src&gt; and &lt;dst&gt; branches&quot;</span> <span class="se">\</span>
-    &lt;rev <span class="m">1</span>&gt; &lt;rev <span class="m">2</span>&gt;</span>
+<pre class="highlight"><span class="prompt1">./docker-run alembic             --config<span class="o">=</span>geoportal/tests/functional/alembic.ini --name<span class="o">=[</span>main<span class="p">|</span>static<span class="o">]</span>             merge --message<span class="o">=</span><span class="s2">&quot;Merge &lt;src&gt; and &lt;dst&gt; branches&quot;</span>             &lt;rev <span class="m">1</span>&gt; &lt;rev <span class="m">2</span>&gt;</span>
 </pre><p>Remove the import and replace the core of the method by <code class="docutils literal notranslate"><span class="pre">pass</span></code> in the generated file.</p>
 <p class="last">And finally add the new file.</p>
 </div>
@@ -93,7 +86,7 @@ span.prompt1:before {
 </pre><p>Get the localisation from Transifex:</p>
 <pre class="highlight"><span class="prompt1">docker build --tag<span class="o">=</span>camptocamp/geomapfish-build-dev docker/build</span>
 <span class="prompt1">./docker-run make transifex-get</span>
-</pre><p>For each version we create a new branch (at the latest at the final release):</p>
+</pre><p>For each version, we create a new branch (at the latest, for the final release):</p>
 <pre class="highlight"><span class="prompt1">git checkout -b &lt;version&gt;</span>
 <span class="prompt1">git push origin &lt;version&gt;</span>
 </pre><dl class="docutils">
@@ -146,19 +139,19 @@ span.prompt1:before {
 </pre><p>Run a new job for the &lt;version&gt; branch on Jenkins.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">It’s possible to do a version only on the latest commit on a branch,
-If you relay need to do that, you should create a new branch.</p>
+<p class="last">It is possible to do a version only on the latest commit on a branch.
+If you really need to do that, you should create a new branch.</p>
 </div>
 </div>
 <div class="section" id="notes-about-travis">
 <h3>Notes about Travis<a class="headerlink" href="#notes-about-travis" title="Permalink to this headline">¶</a></h3>
-<p>When you push a tag with the pattern <code class="docutils literal notranslate"><span class="pre">^[0-9]+\.[0-9]+\..+$</span></code>
+<p>When you push a tag with the pattern <code class="docutils literal notranslate"><span class="pre">^[0-9]+\.[0-9]+\..+$</span></code>,
 a new release will automatically be created on Travis CI.</p>
 </div>
 </div>
 <div class="section" id="post-release-tasks">
 <h2>Post release tasks<a class="headerlink" href="#post-release-tasks" title="Permalink to this headline">¶</a></h2>
-<p>When a new release or a new version is done you should do the following tasks:</p>
+<p>When a new release or a new version is done, you should do the following tasks:</p>
 <ul class="simple">
 <li>Merge the version into the upper one to the master i.e.: <code class="docutils literal notranslate"><span class="pre">2.4</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">2.5</span></code>, <code class="docutils literal notranslate"><span class="pre">2.5</span></code> =&gt; <code class="docutils literal notranslate"><span class="pre">master</span></code>.</li>
 </ul>

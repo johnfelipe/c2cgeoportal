@@ -52,7 +52,7 @@ tool.</p>
 <div class="section" id="webpack">
 <h2>Webpack<a class="headerlink" href="#webpack" title="Permalink to this headline">¶</a></h2>
 <p>To have faster builds you need to use the Webpack dev server; you can achieve this as follows.</p>
-<p>In the <code class="docutils literal notranslate"><span class="pre">geoportal/demo_geoportal/static-ngeo/js/apps/&lt;interface&gt;.html.ejs</span></code> file
+<p>In the file <code class="docutils literal notranslate"><span class="pre">geoportal/demo_geoportal/static-ngeo/js/apps/&lt;interface&gt;.html.ejs</span></code>,
 remove the <code class="docutils literal notranslate"><span class="pre">ng-strict-di</span></code> in the <code class="docutils literal notranslate"><span class="pre">html</span></code> tag.</p>
 <p>In the file <code class="docutils literal notranslate"><span class="pre">docker-compose-dev.yaml</span></code> set the <code class="docutils literal notranslate"><span class="pre">INTERFACE</span></code> to the wanted value.</p>
 <p>Run:</p>
@@ -65,20 +65,20 @@ span.prompt1:before {
 </div>
 <div class="section" id="pyramid">
 <h2>Pyramid<a class="headerlink" href="#pyramid" title="Permalink to this headline">¶</a></h2>
-<p>If the <code class="docutils literal notranslate"><span class="pre">pyramid_debugtoolbar</span></code> is enabled the error is directly shown in the query that fails.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">pyramid_debugtoolbar</span></code> is enabled, the error is directly shown in the query that fails.</p>
 </div>
 <div class="section" id="mapserver">
 <h2>Mapserver<a class="headerlink" href="#mapserver" title="Permalink to this headline">¶</a></h2>
-<p>Sometime more information are available by using this command:</p>
+<p>Sometimes, more information can be obtained by using this command:</p>
 <pre class="highlight"><span class="prompt1">docker-compose <span class="nb">exec</span> mapserver shp2img -m &lt;mapfile&gt; -o test.png -e &lt;minx&gt; &lt;miny&gt; &lt;maxx&gt; &lt;maxy&gt; <span class="se">\</span>
     -s &lt;sizex&gt; &lt;sizey&gt; -l &lt;layers&gt;</span>
-</pre><p>You may also activate MapServer’s debug mode and set environment variable of the MapServer container
-<code class="docutils literal notranslate"><span class="pre">MS_DEBUGLEVEL</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> (most verbose level, default is 0).</p>
+</pre><p>You may also activate MapServer’s debug mode and set the environment variable <code class="docutils literal notranslate"><span class="pre">MS_DEBUGLEVEL</span></code>
+of the MapServer container <code class="docutils literal notranslate"><span class="pre">MS_DEBUGLEVEL</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> (most verbose level, default is 0).</p>
 <p><a class="reference external" href="http://mapserver.org/optimization/debugging.html?highlight=debug#debug-levels">More information</a></p>
 </div>
 <div class="section" id="postgresql">
 <h2>PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this headline">¶</a></h2>
-<p>In the <code class="docutils literal notranslate"><span class="pre">/etc/postgresql/9.*/main/postgresql.conf</span></code> configuration file
+<p>In the configuration file <code class="docutils literal notranslate"><span class="pre">/etc/postgresql/9.*/main/postgresql.conf</span></code>,
 you can set <code class="docutils literal notranslate"><span class="pre">log_statement</span></code> to <code class="docutils literal notranslate"><span class="pre">all</span></code> to see all the called statements.
 This file must be edited using the <code class="docutils literal notranslate"><span class="pre">postgres</span></code> user.</p>
 <p>Reloading PostgreSQL is required so that the new configuration is taken into
@@ -150,7 +150,7 @@ services:
 </pre></div>
 <div class="section" id="working-on-c2cgeoportal-itself">
 <h3>Working on c2cgeoportal itself<a class="headerlink" href="#working-on-c2cgeoportal-itself" title="Permalink to this headline">¶</a></h3>
-<p>Clone and build c2cgeoportal, see: developer_server_side.</p>
+<p>Clone and build c2cgeoportal, see <a class="reference internal" href="server_side.html#developer-server-side"><span class="std std-ref">Server-side development</span></a>.</p>
 <p>Add these volumes to your <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code>:</p>
 <div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">services</span><span class="p">:</span>
   <span class="n">geoportal</span><span class="p">:</span>
@@ -201,16 +201,16 @@ services:
 </pre></div>
 <div class="section" id="performance-or-network-error">
 <h2>Performance or network error<a class="headerlink" href="#performance-or-network-error" title="Permalink to this headline">¶</a></h2>
-<p>For performance and proxy issues make sure that all internal URLs in the config file
+<p>For performance and proxy issues, make sure that all internal URLs in the config file
 use localhost (use <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">&quot;http://localhost/&lt;path&gt;&quot;</span> <span class="pre">--header</span> <span class="pre">Host:&lt;server_name&gt;</span></code>
 to test it).</p>
 <div class="section" id="tilecloud-chain">
-<h3>Tilecloud chain<a class="headerlink" href="#tilecloud-chain" title="Permalink to this headline">¶</a></h3>
+<h3>TileCloud chain<a class="headerlink" href="#tilecloud-chain" title="Permalink to this headline">¶</a></h3>
 <p>Points to check with TileCloud chain:</p>
 <ul class="simple">
 <li>Disabling metatiles should be avoided.</li>
 <li>Make sure that <code class="docutils literal notranslate"><span class="pre">empty_metatile_detection</span></code> and <code class="docutils literal notranslate"><span class="pre">empty_tile_detection</span></code> are configured correctly.</li>
-<li>Make sure to not generate tiles with a higher resolution than in the raster sources.</li>
+<li>Make sure to not generate tiles with a resolution higher than the one in the raster sources.</li>
 </ul>
 </div>
 </div>
