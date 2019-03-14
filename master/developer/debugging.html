@@ -54,14 +54,11 @@ tool.</p>
 <p>To have faster builds you need to use the Webpack dev server; you can achieve this as follows.</p>
 <p>In the file <code class="docutils literal notranslate"><span class="pre">geoportal/demo_geoportal/static-ngeo/js/apps/&lt;interface&gt;.html.ejs</span></code>,
 remove the <code class="docutils literal notranslate"><span class="pre">ng-strict-di</span></code> in the <code class="docutils literal notranslate"><span class="pre">html</span></code> tag.</p>
-<p>In the file <code class="docutils literal notranslate"><span class="pre">docker-compose-dev.yaml</span></code> set the <code class="docutils literal notranslate"><span class="pre">INTERFACE</span></code> to the wanted value.</p>
-<p>Run:</p>
-<pre class="highlight"><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">docker-compose --file<span class="o">=</span>docker-compose.yaml --file<span class="o">=</span>docker-compose-dev.yaml up -b</span>
-</pre><p>Open the application at the following URL: <code class="docutils literal notranslate"><span class="pre">https://&lt;host&gt;/&lt;entry_point&gt;/dev/&lt;interface&gt;.html</span></code>.</p>
+<p>If it’s not already done copy the file <code class="docutils literal notranslate"><span class="pre">docker-compose.override.sample.yaml</span></code> to
+<code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code>.
+Be sure thate the service <code class="docutils literal notranslate"><span class="pre">webpack_dev_server</span></code> is present and uncommented.</p>
+<p>Restart your application as usual.</p>
+<p>Open the application at the following URL: <code class="docutils literal notranslate"><span class="pre">https://&lt;host&gt;/&lt;entry_point&gt;/dev/&lt;interface&gt;.html</span></code>.</p>
 </div>
 <div class="section" id="pyramid">
 <h2>Pyramid<a class="headerlink" href="#pyramid" title="Permalink to this headline">¶</a></h2>
@@ -70,7 +67,11 @@ span.prompt1:before {
 <div class="section" id="mapserver">
 <h2>Mapserver<a class="headerlink" href="#mapserver" title="Permalink to this headline">¶</a></h2>
 <p>Sometimes, more information can be obtained by using this command:</p>
-<pre class="highlight"><span class="prompt1">docker-compose <span class="nb">exec</span> mapserver shp2img -m &lt;mapfile&gt; -o test.png -e &lt;minx&gt; &lt;miny&gt; &lt;maxx&gt; &lt;maxy&gt; <span class="se">\</span>
+<pre class="highlight"><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">docker-compose <span class="nb">exec</span> mapserver shp2img -m &lt;mapfile&gt; -o test.png -e &lt;minx&gt; &lt;miny&gt; &lt;maxx&gt; &lt;maxy&gt; <span class="se">\</span>
     -s &lt;sizex&gt; &lt;sizey&gt; -l &lt;layers&gt;</span>
 </pre><p>You may also activate MapServer’s debug mode and set the environment variable <code class="docutils literal notranslate"><span class="pre">MS_DEBUGLEVEL</span></code>
 of the MapServer container <code class="docutils literal notranslate"><span class="pre">MS_DEBUGLEVEL</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> (most verbose level, default is 0).</p>
@@ -127,39 +128,21 @@ account:</p>
 <h2>Developing in Python<a class="headerlink" href="#developing-in-python" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="create-a-development-docker-compose-override-yaml">
 <h3>Create a development docker-compose.override.yaml<a class="headerlink" href="#create-a-development-docker-compose-override-yaml" title="Permalink to this headline">¶</a></h3>
-<p>Add a <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code> file with a <code class="docutils literal notranslate"><span class="pre">geoportal</span></code> service containing the following lines:</p>
-<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span>---
-
-version: &#39;2&#39;
-
-services:
-  geoportal:
-    volumes:
-      - ${PWD}/geoportal/&lt;project&gt;_geoportal:/app/&lt;project&gt;_geoportal
-    environment:
-      - GUNICORN_CMD_ARGS=--reload
-    # entrypoint: []  # do not eval templates when using webpack-dev-server
-</pre></div>
-</div>
+<p>If it’s not already done copy the file <code class="docutils literal notranslate"><span class="pre">docker-compose.override.sample.yaml</span></code> to
+<code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code>.</p>
+<p>Be sure that the volume for the project is not commented.</p>
 <p>You can also do a graceful restart of the running gunicorn:</p>
 <pre class="highlight"><span class="prompt1">docker-compose <span class="nb">exec</span> geoportal bash</span>
 <span class="prompt1"><span class="nb">kill</span> -s HUP <span class="sb">`</span>ps aux<span class="p">|</span>grep gunicorn<span class="p">|</span>head --lines<span class="o">=</span><span class="m">1</span><span class="p">|</span>awk <span class="s1">&#39;{print $2}&#39;</span><span class="sb">`</span>  <span class="c1"># graceful</span></span>
-</pre><p>And finally if you stop and start the container you will see your modifications:</p>
-<pre class="highlight"><span class="prompt1">docker-compose stop geoportal</span>
-<span class="prompt1">docker-compose start geoportal</span>
+</pre><p>And finally if you restart the container you will see your modifications:</p>
+<pre class="highlight"><span class="prompt1">docker-compose restart geoportal</span>
 </pre></div>
 <div class="section" id="working-on-c2cgeoportal-itself">
 <h3>Working on c2cgeoportal itself<a class="headerlink" href="#working-on-c2cgeoportal-itself" title="Permalink to this headline">¶</a></h3>
 <p>Clone and build c2cgeoportal, see <a class="reference internal" href="server_side.html#developer-server-side"><span class="std std-ref">Server-side development</span></a>.</p>
-<p>Add these volumes to your <code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code>:</p>
-<div class="code yaml highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">services</span><span class="p">:</span>
-  <span class="n">geoportal</span><span class="p">:</span>
-    <span class="n">volumes</span><span class="p">:</span>
-      <span class="o">-</span> <span class="o">&lt;</span><span class="n">c2cgeoportal_git_root</span><span class="o">&gt;/</span><span class="n">commons</span><span class="o">/</span><span class="n">c2cgeoportal_commons</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">c2cgeoportal_commons</span><span class="o">/</span><span class="n">c2cgeoportal_commons</span>
-      <span class="o">-</span> <span class="o">&lt;</span><span class="n">c2cgeoportal_git_root</span><span class="o">&gt;/</span><span class="n">geoportal</span><span class="o">/</span><span class="n">c2cgeoportal_geoportal</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">c2cgeoportal_geoportal</span><span class="o">/</span><span class="n">c2cgeoportal_geoportal</span>
-      <span class="o">-</span> <span class="o">&lt;</span><span class="n">c2cgeoportal_git_root</span><span class="o">&gt;/</span><span class="n">admin</span><span class="o">/</span><span class="n">c2cgeoportal_admin</span><span class="p">:</span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">c2cgeoportal_admin</span><span class="o">/</span><span class="n">c2cgeoportal_admin</span>
-</pre></div>
-</div>
+<p>If it’s not already done copy the file <code class="docutils literal notranslate"><span class="pre">docker-compose.override.sample.yaml</span></code> to
+<code class="docutils literal notranslate"><span class="pre">docker-compose.override.yaml</span></code>.
+Be sure that the volumes for c2cgeoportal are uncommented.</p>
 </div>
 </div>
 <div class="section" id="access-to-a-hidden-service">
