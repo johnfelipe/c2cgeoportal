@@ -57,12 +57,15 @@ monitoring system like Nagios to check that the application is alive.</p>
 <div>&lt;project_url&gt;/c2c/health_check?max_level=3</div></blockquote>
 <p>The levels used in the default configuration (recommended settings):</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">1</span></code>: Vital checkers (quick checks).</li>
-<li><code class="docutils literal notranslate"><span class="pre">3</span></code>: Slow service checks, like print and GetCapabilities.</li>
+<li><code class="docutils literal notranslate"><span class="pre">1</span></code>: Fatal checkers (main database connection, alembic versions).</li>
+<li><code class="docutils literal notranslate"><span class="pre">2</span></code>: Vital checkers (other database connection, redis connexions, versions).</li>
+<li><code class="docutils literal notranslate"><span class="pre">3</span></code>: Quick internal checks.</li>
+<li><code class="docutils literal notranslate"><span class="pre">4</span></code>: Slow service checks (phantomjs checks, theme).</li>
+<li><code class="docutils literal notranslate"><span class="pre">5</span></code>: Maybe cost service checks (print a page).</li>
 <li><code class="docutils literal notranslate"><span class="pre">10</span></code>: collector of different sites.</li>
 </ul>
 <p>See also: <a class="reference external" href="https://github.com/camptocamp/c2cwsgiutils/#health-checks">https://github.com/camptocamp/c2cwsgiutils/#health-checks</a></p>
-<p>The recommended URL that should be checked by services such as Pingdom:</p>
+<p>The recommended URL that should be checked by services such as Pingdom or StatusCake:</p>
 <blockquote>
 <div>&lt;project_url&gt;/c2c/health_check?checks=check_collector</div></blockquote>
 <p>The recommended URL to use to validate a migration (<code class="docutils literal notranslate"><span class="pre">checker_url</span></code> in <code class="docutils literal notranslate"><span class="pre">proect.yaml.mako</span></code>):</p>
