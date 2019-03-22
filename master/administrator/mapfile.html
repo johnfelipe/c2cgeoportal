@@ -208,27 +208,7 @@ area. Theses features will not be displayed as they are not in the area (ie not
 <em>st_contains</em> operator.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">${mapfile_data_subselect}</span></code> variable is defined in the <code class="docutils literal notranslate"><span class="pre">CONST_vars.yaml</span></code>
-configuration file. Its goal is to simplify the writing of the mapfile.
-It is defined as follows:</p>
-<div class="code sql highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SELECT</span>
-  <span class="n">ST_Collect</span><span class="p">(</span><span class="n">ra</span><span class="o">.</span><span class="n">area</span><span class="p">)</span>
-<span class="n">FROM</span>
-  <span class="n">main</span><span class="o">.</span><span class="n">restrictionarea</span> <span class="n">AS</span> <span class="n">ra</span><span class="p">,</span>
-  <span class="n">main</span><span class="o">.</span><span class="n">role_restrictionarea</span> <span class="n">AS</span> <span class="n">rra</span><span class="p">,</span>
-  <span class="n">main</span><span class="o">.</span><span class="n">layer_restrictionarea</span> <span class="n">AS</span> <span class="n">lra</span><span class="p">,</span>
-  <span class="n">main</span><span class="o">.</span><span class="n">treeitem</span> <span class="n">AS</span> <span class="n">la</span>
-<span class="n">WHERE</span>
-  <span class="n">rra</span><span class="o">.</span><span class="n">role_id</span> <span class="o">=</span> <span class="o">%</span><span class="n">role_id</span><span class="o">%</span>
-<span class="n">AND</span>
-  <span class="n">rra</span><span class="o">.</span><span class="n">restrictionarea_id</span> <span class="o">=</span> <span class="n">ra</span><span class="o">.</span><span class="n">id</span>
-<span class="n">AND</span>
-  <span class="n">lra</span><span class="o">.</span><span class="n">restrictionarea_id</span> <span class="o">=</span> <span class="n">ra</span><span class="o">.</span><span class="n">id</span>
-<span class="n">AND</span>
-  <span class="n">lra</span><span class="o">.</span><span class="n">layer_id</span> <span class="o">=</span> <span class="n">la</span><span class="o">.</span><span class="n">id</span>
-<span class="n">AND</span>
-  <span class="n">la</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span>
-</pre></div>
-</div>
+configuration file. Its goal is to simplify the writing of the mapfile.</p>
 </div>
 <div class="section" id="without-restriction-on-the-restrictionarea-area">
 <h3>Without restriction on the RestrictionArea area<a class="headerlink" href="#without-restriction-on-the-restrictionarea-area" title="Permalink to this headline">¶</a></h3>
@@ -240,7 +220,7 @@ It is defined as follows:</p>
     FROM
         &lt;schema&gt;.&lt;table&gt; AS geo
     WHERE (
-        %role_id% IN (
+        %role_ids% IN (
             ${mapfile_data_noarea_subselect} &#39;&lt;layername&gt;&#39;
         )
     )
